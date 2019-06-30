@@ -20,9 +20,10 @@ public class TestStatic3 {
 static块只会被初始化一次
  */
 class Bread {
-    static{
+    static {
         System.out.println("Bread is loaded");
     }
+
     Bread() {
         System.out.println("bread");
     }
@@ -36,9 +37,9 @@ class Bread {
  */
 class Meal {
 
+    Bread bread = new Bread();
+
     Meal() {
         System.out.println("meal");
     }
-
-    Bread bread = new Bread();
 }

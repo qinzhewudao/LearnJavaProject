@@ -55,7 +55,7 @@ public class TestIterator {
         System.out.println("-----------------------------");
 
         List<String> aList2 = new ArrayList<String>();
-        for (int i = 0; i < 5; i++){
+        for (int i = 0; i < 5; i++) {
             aList2.add("a" + i);
         }
         System.out.println(aList2);

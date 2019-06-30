@@ -4,30 +4,30 @@ package TestKeyWord;
  * author sheyang
  * created at 2018/8/2
  */
-public class TestStatic1 extends Base{
+public class TestStatic1 extends Base {
 
-        static{
-            System.out.println("test static");
-        }
-
-        private TestStatic1(){
-            System.out.println("test constructor");
-        }
-
-        public static void main(String[] args) {
-            new TestStatic1();
-        }
+    static {
+        System.out.println("test static");
     }
 
-    class Base{
+    private TestStatic1() {
+        System.out.println("test constructor");
+    }
 
-        static{
-            System.out.println("base static");
-        }
+    public static void main(String[] args) {
+        new TestStatic1();
+    }
+}
 
-        Base(){
-            System.out.println("base constructor");
-        }
+class Base {
+
+    static {
+        System.out.println("base static");
+    }
+
+    Base() {
+        System.out.println("base constructor");
+    }
 }
 /*
 这段代码具体的执行过程，在执行开始，先要寻找到main方法，因为main方法是程序的入口，

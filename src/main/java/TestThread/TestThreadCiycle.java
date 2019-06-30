@@ -4,22 +4,13 @@ package TestThread;
  * author sheyang
  * created at 2018/8/27
  */
-public class TestThreadCiycle implements Runnable{
+public class TestThreadCiycle implements Runnable {
     private String name;
     private boolean live = true;// 标记变量，表示线程是否可中止；
+
     public TestThreadCiycle(String name) {
         super();
         this.name = name;
-    }
-    public void run() {
-        int i = 0;
-        //当live的值是true时，继续线程体；false则结束循环，继而终止线程体；
-        while (live) {
-            System.out.println(name + (i++));
-        }
-    }
-    public void terminate() {
-        live = false;
     }
 
     public static void main(String[] args) {
@@ -31,5 +22,17 @@ public class TestThreadCiycle implements Runnable{
         }
         ttc.terminate();
         System.out.println("ttc stop!");
+    }
+
+    public void run() {
+        int i = 0;
+        //当live的值是true时，继续线程体；false则结束循环，继而终止线程体；
+        while (live) {
+            System.out.println(name + (i++));
+        }
+    }
+
+    public void terminate() {
+        live = false;
     }
 }

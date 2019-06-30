@@ -18,7 +18,6 @@ public class TestParamemterTransferMode1 {
     }
 
 
-
     //参数为对象，不改变引用的值 ？？？？？？
 
     public static void add(StringBuffer s) {
@@ -26,7 +25,6 @@ public class TestParamemterTransferMode1 {
         s.append("_add");
 
     }
-
 
 
     //参数为对象，改变引用的值 ？？？？？
@@ -38,14 +36,13 @@ public class TestParamemterTransferMode1 {
     }
 
 
-
     public static void main(String[] args) {
 
         int i = 50;
 
         testBasicType(i);
 
-        System.out.println("在main函数里调用函数后m="+i);//i=50
+        System.out.println("在main函数里调用函数后m=" + i);//i=50
 
         StringBuffer sMain = new StringBuffer("init");
 

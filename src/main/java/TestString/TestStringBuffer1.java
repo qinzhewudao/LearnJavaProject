@@ -5,9 +5,9 @@ package TestString;
  * created at 2018/7/31
  */
 public class TestStringBuffer1 {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         StringBuffer s;
-        s= new StringBuffer("java");
+        s = new StringBuffer("java");
         //两个引用指向同一个对象，地址相同，类似于c++的指针
         //这样，对其中一个引用进行操作，另一个引用得到的结果必然也会随之改变
         //s1和s只是两个引用，它们只是操纵杆而已，它们指向同一个对象，操纵的也
@@ -21,8 +21,8 @@ public class TestStringBuffer1 {
         StringBuffer s1 = s;
 
         s1.append(" world");
-        System.out.println("s1="+s1.toString());
-        System.out.println("s="+s.toString());
+        System.out.println("s1=" + s1.toString());
+        System.out.println("s=" + s.toString());
     }
 
 

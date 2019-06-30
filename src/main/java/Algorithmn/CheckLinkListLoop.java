@@ -10,20 +10,6 @@ package Algorithmn;
  */
 public class CheckLinkListLoop {
 
-    public static class Node {
-        private Object data;
-        public Node next;
-
-        public Node(Object data, Node next) {
-            this.data = data;
-            this.next = next;
-        }
-
-        public Node(Object data) {
-            this.data = data;
-        }
-    }
-
     public static Boolean checkLinkListLoop(Node node) {
         Node slow = node;
         Node fast = node;
@@ -51,5 +37,19 @@ public class CheckLinkListLoop {
             }
         }
         return false;
+    }
+
+    public static class Node {
+        public Node next;
+        private Object data;
+
+        public Node(Object data, Node next) {
+            this.data = data;
+            this.next = next;
+        }
+
+        public Node(Object data) {
+            this.data = data;
+        }
     }
 }

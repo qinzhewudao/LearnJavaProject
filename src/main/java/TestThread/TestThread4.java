@@ -6,19 +6,19 @@ package TestThread;
  * Thread的几种简单方法的测试
  */
 public class TestThread4 {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TestThread4 testThread4 = new TestThread4();
         MyThread thread = testThread4.new MyThread();
         thread.start();
-        try{
+        try {
             Thread.currentThread().sleep(1000);
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
 
         }
         thread.interrupt();
     }
 
-    class MyThread extends Thread{
+    class MyThread extends Thread {
 //        @Override
 //        //打断处于阻塞的线程
 //        public void run() {
@@ -48,8 +48,8 @@ public class TestThread4 {
         //不过一般不通过这种方式来获取推荐使用自己添加的标志位isStop再在外面通过set方法来设置这个标志位来结束循环
         public void run() {
             int i = 0;
-            while(!isInterrupted() && i<Integer.MAX_VALUE){
-                System.out.println(i+" while循环");
+            while (!isInterrupted() && i < Integer.MAX_VALUE) {
+                System.out.println(i + " while循环");
                 i++;
             }
 

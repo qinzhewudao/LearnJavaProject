@@ -5,40 +5,43 @@ package TestKeyWord;
  * created at 2018/8/2
  */
 public class TestStatic2 {
-        Person person = new Person("Test");
-        static{
-            System.out.println("test static");
-        }
-
-        TestStatic2() {
-            System.out.println("test constructor");
-        }
-
-        public static void main(String[] args) {
-            new MyClass();
-        }
+    static {
+        System.out.println("test static");
     }
 
-    class Person{
-        static{
-            System.out.println("person static");
-        }
-        Person(String str) {
-            System.out.println("person "+str);
-        }
+    Person person = new Person("Test");
+
+    TestStatic2() {
+        System.out.println("test constructor");
     }
 
-
-    class MyClass extends TestStatic2 {
-        Person person = new Person("MyClass");
-        static{
-            System.out.println("myclass static");
-        }
-
-        MyClass() {
-            System.out.println("myclass constructor");
-        }
+    public static void main(String[] args) {
+        new MyClass();
     }
+}
+
+class Person {
+    static {
+        System.out.println("person static");
+    }
+
+    Person(String str) {
+        System.out.println("person " + str);
+    }
+}
+
+
+class MyClass extends TestStatic2 {
+    static {
+        System.out.println("myclass static");
+    }
+
+    Person person = new Person("MyClass");
+
+    MyClass() {
+        System.out.println("myclass constructor");
+    }
+}
 /*
 首先加载Test类，因此会执行Test类中的static块。接着执行new MyClass()，而MyClass类还没有被加载，
 因此需要加载MyClass类。在加载MyClass类的时候，发现MyClass类继承自Test类，但是由于Test类已经被加载了，所

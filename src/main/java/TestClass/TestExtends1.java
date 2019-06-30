@@ -5,7 +5,7 @@ package TestClass;
  * created at 2018/8/3
  */
 public class TestExtends1 {
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         Shape shape = new Circle();
         System.out.println(shape.name);
         shape.printType();
@@ -16,16 +16,16 @@ public class TestExtends1 {
 class Shape {
     String name = "shape";
 
-    Shape(){
+    Shape() {
         System.out.println("shape constructor");
-    }
-
-    public void printType() {
-        System.out.println("this is shape");
     }
 
     static void printName() {
         System.out.println("shape");
+    }
+
+    public void printType() {
+        System.out.println("this is shape");
     }
 }
 
@@ -36,11 +36,11 @@ class Circle extends Shape {
         System.out.println("circle constructor");
     }
 
-    public void printType() {
-        System.out.println("this is circle");
-    }
-
     public static void printName() {
         System.out.println("circle");
+    }
+
+    public void printType() {
+        System.out.println("this is circle");
     }
 }

@@ -3,6 +3,7 @@ package TestMemory;
 import com.sun.management.OperatingSystemMXBean;
 
 import java.lang.management.ManagementFactory;
+
 /**
  * author sheyang
  * created at 2018/7/26

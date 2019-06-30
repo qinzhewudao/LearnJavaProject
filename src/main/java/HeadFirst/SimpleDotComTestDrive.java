@@ -13,7 +13,7 @@ class SimpleDotCom {
 
     private int numOfHits;
 
-    public ArrayList<String>  getLocationCells() {
+    public ArrayList<String> getLocationCells() {
         return locationCells;
     }
 
@@ -29,17 +29,17 @@ class SimpleDotCom {
         this.numOfHits = numOfHits;
     }
 
-    String checkYourself(String userGuess){
+    String checkYourself(String userGuess) {
 
         String result = "miss";
 
         int index = locationCells.indexOf(userGuess);
 
-        if(0 < index){
+        if (0 < index) {
             locationCells.remove(index);
-            if(locationCells.isEmpty()){
+            if (locationCells.isEmpty()) {
                 result = "kill";
-            }else {
+            } else {
                 result = "hit";
             }
         }
@@ -48,34 +48,34 @@ class SimpleDotCom {
     }
 }
 
-class GameHelper{
-    String getUserInput(String prompt){
+class GameHelper {
+    String getUserInput(String prompt) {
         System.out.println(prompt);
         Scanner scanner = new Scanner(System.in);
         return scanner.next();
     }
 }
 
-public class SimpleDotComTestDrive{
-    public static void main(String[] args){
+public class SimpleDotComTestDrive {
+    public static void main(String[] args) {
 
         GameHelper helper = new GameHelper();
         SimpleDotCom dot = new SimpleDotCom();
         Integer randomNumber = (int) (Math.random() * 5);
         ArrayList<String> list = new ArrayList<>();
         list.add(randomNumber.toString());
-        list.add(Integer.valueOf(randomNumber+1).toString());
-        list.add(Integer.valueOf(randomNumber+2).toString());
+        list.add(Integer.valueOf(randomNumber + 1).toString());
+        list.add(Integer.valueOf(randomNumber + 2).toString());
         dot.setLocationCells(list);
         int numOfGuess = 0;
         Boolean isAlive = true;
-        while(isAlive){
+        while (isAlive) {
             String guess = helper.getUserInput("enter a number:");
             String result = dot.checkYourself(guess);
             numOfGuess++;
-            if(result.equals("kill")){
+            if (result.equals("kill")) {
                 isAlive = false;
-                System.out.println("Congratulations! You kill the dot com!The number of Guess is "+ numOfGuess);
+                System.out.println("Congratulations! You kill the dot com!The number of Guess is " + numOfGuess);
             }
         }
     }

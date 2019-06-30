@@ -43,7 +43,7 @@ public class TestStream {
             threadSet.add(thread);
         });
         System.out.println("threadSet一共有" + threadSet.size() + "个线程");
-        System.out.println("系统共有"+Runtime.getRuntime().availableProcessors()+"个cpu");
+        System.out.println("系统共有" + Runtime.getRuntime().availableProcessors() + "个cpu");
         List<Integer> list1 = new ArrayList<>();
         List<Integer> list2 = new ArrayList<>();
         for (int i = 0; i < 100000; i++) {
@@ -97,7 +97,7 @@ public class TestStream {
         threadSetTwo.addAll(threadSet);
         System.out.println(threadSetTwo);
         System.out.println("threadSetTwo一共有" + threadSetTwo.size() + "个线程");
-        System.out.println("系统一个有"+Runtime.getRuntime().availableProcessors()+"个cpu");
+        System.out.println("系统一个有" + Runtime.getRuntime().availableProcessors() + "个cpu");
 
     }
 

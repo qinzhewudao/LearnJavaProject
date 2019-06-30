@@ -5,7 +5,7 @@ package TestChar;
  * created at 2018/9/3
  */
 public class TestUnicode {
-    public static void main(String[] args){
+    public static void main(String[] args) {
 //4A表示Unicode字符U+004A 拉丁字符J，可以写成\u004A（使用\\u前缀)
 //
 //\n,\r,\t,\b代表换行、回车、tab、退格。
@@ -17,7 +17,7 @@ public class TestUnicode {
         System.out.println(lineSeparator);
         //String[] arr = fileContet.splite(lineSeparator );
 
-        System.out.println(-17%12);
+        System.out.println(-17 % 12);
 
 
         //java中，只能用boolean来作为判断表达式。不像C++数字 非0便是false
@@ -25,5 +25,5 @@ public class TestUnicode {
 //
 //        }
     }
-    
+
 }

@@ -9,12 +9,12 @@ import java.util.List;
  * created at 2018/9/10
  */
 public class listToString {
-    public static void main(String[] args){
-        List<String> list = Arrays.asList("11","22","23");
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList("11", "22", "23");
 
         // 最传统写法：
         StringBuilder sb = new StringBuilder();
-        for(String s : list){
+        for (String s : list) {
             sb.append(s);
         }
 

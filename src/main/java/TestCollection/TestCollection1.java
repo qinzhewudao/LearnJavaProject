@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class TestCollection1 {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         List<Integer> integers1 = new ArrayList<Integer>();
         List<Integer> integers2 = new ArrayList<Integer>();
         integers1.add(1);
@@ -26,7 +26,7 @@ public class TestCollection1 {
 
         integers1.addAll(integers2);
 
-        for(Integer integer:integers1){
+        for (Integer integer : integers1) {
             System.out.println(integer);
         }
 

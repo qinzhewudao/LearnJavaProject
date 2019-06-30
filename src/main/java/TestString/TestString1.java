@@ -6,10 +6,10 @@ package TestString;
  */
 public class TestString1 {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         //String不可被修改，只能被赋值一次
         String s1 = "abcedf";
-        String s2 = s1.substring(2,4);
+        String s2 = s1.substring(2, 4);
         System.out.println(Integer.toHexString(s1.hashCode()));
         System.out.println(Integer.toHexString(s2.hashCode()));
 
@@ -51,13 +51,13 @@ public class TestString1 {
         Long g = 3L;
         Long h = 2L;
 
-        System.out.println(c==d);
-        System.out.println(e==f);
-        System.out.println(c==(a+b));
-        System.out.println(c.equals(a+b));
-        System.out.println(g==(a+b));
-        System.out.println(g.equals(a+b));
-        System.out.println(g.equals(a+h));
+        System.out.println(c == d);
+        System.out.println(e == f);
+        System.out.println(c == (a + b));
+        System.out.println(c.equals(a + b));
+        System.out.println(g == (a + b));
+        System.out.println(g.equals(a + b));
+        System.out.println(g.equals(a + h));
 
     }
 

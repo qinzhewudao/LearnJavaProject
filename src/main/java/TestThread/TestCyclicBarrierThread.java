@@ -13,7 +13,7 @@ public class TestCyclicBarrierThread {
 
     private static Logger LOGGER = Logger.getLogger("lavasoft");
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         //构造器：设置屏障放开前做的事情
         CyclicBarrier barrier3 = new CyclicBarrier(2, () -> {
             LOGGER.info("屏障放开，[屏障线程]先运行！");
@@ -38,5 +38,5 @@ public class TestCyclicBarrierThread {
             }).start();
         }
     }
-    
+
 }

@@ -8,7 +8,7 @@ import java.rmi.server.UnicastRemoteObject;
  * author sheyang
  * created at 2018/10/15
  */
-public class GumballMachine extends UnicastRemoteObject implements GumballMachineRemote{
+public class GumballMachine extends UnicastRemoteObject implements GumballMachineRemote {
     //位置
     private String location;
 
@@ -18,7 +18,7 @@ public class GumballMachine extends UnicastRemoteObject implements GumballMachin
     //状态
     private State state;
 
-    public GumballMachine(String location,Integer count) throws RemoteException{
+    public GumballMachine(String location, Integer count) throws RemoteException {
         this.location = location;
         this.count = count;
     }

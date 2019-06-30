@@ -10,20 +10,33 @@ import java.util.Stack;
  * @author sheyang
  */
 public class Tree<AnyType extends Comparable<? super AnyType>> {
-    private static class BinaryNode<AnyType> {
-
-        BinaryNode(AnyType theElement, BinaryNode<AnyType> lt, BinaryNode<AnyType> rt) {
-            element = theElement;
-            left = lt;
-            right = rt;
-        }
-
-        AnyType element;
-        BinaryNode<AnyType> left;
-        BinaryNode<AnyType> right;
-    }
-
     private BinaryNode<AnyType> root;
+
+    public static void main(String[] args) {
+        int[] input = {4, 2, 6, 1, 3, 5, 7, 8, 10};
+        Tree<Integer> tree = new Tree<>();
+        for (int anInput : input) {
+            tree.insert(anInput);
+        }
+        System.out.print("递归前序遍历 ：");
+        tree.preOrder(tree.root);
+        System.out.print("\n非递归前序遍历：");
+        tree.preOrder1(tree.root);
+        System.out.print("\n递归中序遍历 ：");
+        tree.midOrder(tree.root);
+        System.out.print("\n非递归中序遍历 ：");
+        tree.midOrder1(tree.root);
+        System.out.print("\n递归后序遍历 ：");
+        tree.posOrder(tree.root);
+        System.out.print("\n非递归后序遍历 ：");
+        tree.posOrder2(tree.root);
+        System.out.print("\n递归层序遍历：");
+        tree.levelOrder(tree.root);
+        System.out.print("\n非递归层序遍历 ：");
+        tree.levelOrder1(tree.root);
+
+
+    }
 
     public void insert(AnyType x) {
         root = insert(x, root);
@@ -259,29 +272,15 @@ public class Tree<AnyType extends Comparable<? super AnyType>> {
         }
     }
 
-    public static void main(String[] args) {
-        int[] input = {4, 2, 6, 1, 3, 5, 7, 8, 10};
-        Tree<Integer> tree = new Tree<>();
-        for (int anInput : input) {
-            tree.insert(anInput);
+    private static class BinaryNode<AnyType> {
+
+        AnyType element;
+        BinaryNode<AnyType> left;
+        BinaryNode<AnyType> right;
+        BinaryNode(AnyType theElement, BinaryNode<AnyType> lt, BinaryNode<AnyType> rt) {
+            element = theElement;
+            left = lt;
+            right = rt;
         }
-        System.out.print("递归前序遍历 ：");
-        tree.preOrder(tree.root);
-        System.out.print("\n非递归前序遍历：");
-        tree.preOrder1(tree.root);
-        System.out.print("\n递归中序遍历 ：");
-        tree.midOrder(tree.root);
-        System.out.print("\n非递归中序遍历 ：");
-        tree.midOrder1(tree.root);
-        System.out.print("\n递归后序遍历 ：");
-        tree.posOrder(tree.root);
-        System.out.print("\n非递归后序遍历 ：");
-        tree.posOrder2(tree.root);
-        System.out.print("\n递归层序遍历：");
-        tree.levelOrder(tree.root);
-        System.out.print("\n非递归层序遍历 ：");
-        tree.levelOrder1(tree.root);
-
-
     }
 }

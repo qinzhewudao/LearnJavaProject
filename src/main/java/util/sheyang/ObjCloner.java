@@ -13,11 +13,11 @@ import java.io.ObjectOutputStream;
 public class ObjCloner {
 
     @SuppressWarnings("unchecked")
-    public static  <T>T cloneObj(T obj){
+    public static <T> T cloneObj(T obj) {
 
         T retVal = null;
 
-        try{
+        try {
 
             // 将对象写入流中
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -29,9 +29,9 @@ public class ObjCloner {
             ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
             ObjectInputStream ois = new ObjectInputStream(bais);
 
-            retVal = (T)ois.readObject();
+            retVal = (T) ois.readObject();
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

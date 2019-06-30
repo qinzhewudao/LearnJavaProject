@@ -10,7 +10,7 @@ import java.time.temporal.TemporalAdjusters;
  * created at 2018/8/22
  */
 public class TestLocalDateTime1 {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         // 取当前日期：
         LocalDate today = LocalDate.now(); // -> 2014-12-24
 // 根据年月日取日期，12月就是12：

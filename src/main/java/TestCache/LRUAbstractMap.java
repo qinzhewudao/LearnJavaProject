@@ -27,47 +27,35 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class LRUAbstractMap extends java.util.AbstractMap {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(LRUAbstractMap.class);
-
-    /**
-     * 检查是否超期线程
-     */
-    private ExecutorService checkTimePool;
-
     /**
      * map 最大size
      */
     private final static int MAX_SIZE = 1024;
-
     private final static ArrayBlockingQueue<Node> QUEUE = new ArrayBlockingQueue<>(MAX_SIZE);
-
     /**
      * 默认大小
      */
     private final static int DEFAULT_ARRAY_SIZE = 1024;
-
-
-    /**
-     * 数组长度
-     */
-    private int arraySize;
-
-    /**
-     * 数组
-     */
-    private Object[] arrays;
-
-
-    /**
-     * 判断是否停止 flag
-     */
-    private volatile boolean flag = true;
-
-
     /**
      * 超时时间
      */
     private final static Long EXPIRE_TIME = 60 * 60 * 1000L;
-
+    /**
+     * 检查是否超期线程
+     */
+    private ExecutorService checkTimePool;
+    /**
+     * 数组长度
+     */
+    private int arraySize;
+    /**
+     * 数组
+     */
+    private Object[] arrays;
+    /**
+     * 判断是否停止 flag
+     */
+    private volatile boolean flag = true;
     /**
      * 整个 Map 的大小
      */
@@ -274,6 +262,21 @@ public class LRUAbstractMap extends java.util.AbstractMap {
     }
 
     /**
+     * copy HashMap 的 hash 实现
+     *
+     * @param key
+     * @return
+     */
+    public int hash(Object key) {
+        int h;
+        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+    }
+
+    private void lruCallback() {
+        LOGGER.debug("lruCallback");
+    }
+
+    /**
      * 链表
      */
     private class Node {
@@ -291,12 +294,12 @@ public class LRUAbstractMap extends java.util.AbstractMap {
             this.updateTime = System.currentTimeMillis();
         }
 
-        public void setUpdateTime(Long updateTime) {
-            this.updateTime = updateTime;
-        }
-
         public Long getUpdateTime() {
             return updateTime;
+        }
+
+        public void setUpdateTime(Long updateTime) {
+            this.updateTime = updateTime;
         }
 
         @Override
@@ -307,23 +310,6 @@ public class LRUAbstractMap extends java.util.AbstractMap {
                     '}';
         }
     }
-
-
-    /**
-     * copy HashMap 的 hash 实现
-     *
-     * @param key
-     * @return
-     */
-    public int hash(Object key) {
-        int h;
-        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
-    }
-
-    private void lruCallback() {
-        LOGGER.debug("lruCallback");
-    }
-
 
     private class CheckTimeThread implements Runnable {
 

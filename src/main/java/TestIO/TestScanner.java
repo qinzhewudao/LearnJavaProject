@@ -8,7 +8,7 @@ import java.util.Scanner;
  * created at 2018/9/3
  */
 public class TestScanner {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.println("Input name :");
 //读一行
@@ -16,7 +16,7 @@ public class TestScanner {
 //读一个单词，空格分隔
         String name2 = in.next();
 //读整数
-        if(in.hasNextInt()){
+        if (in.hasNextInt()) {
             int age = in.nextInt();
         }
 //读取密码不用Scanner类，可以用Console类

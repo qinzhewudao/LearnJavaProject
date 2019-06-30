@@ -67,7 +67,7 @@ public class TestMain {
         System.out.println(XYZ.name);
 
         // 不会初始化静态块
-        Class clazz1 = Base.class;
+        Class<Base> clazz1 = Base.class;
 
         System.out.println("\n------------------\n");
         // 会初始化,Class.forname的调用格式为 包名.类名
@@ -80,8 +80,8 @@ public class TestMain {
         System.out.println("get class name by .getClass:" + stuClass.getName());
 
         //第二种方式获取Class对象
-        Class stuClass2 = Student.class;
-        System.out.println("get class name by .getClass and base.class:" + (stuClass == stuClass2 ) );//判断第一种方式获取的Class对象和第二种方式获取的是否是同一个
+        Class<Student> stuClass2 = Student.class;
+        System.out.println("get class name by .getClass and base.class:" + (stuClass == stuClass2));//判断第一种方式获取的Class对象和第二种方式获取的是否是同一个
 
         //第三种方式获取Class对象
         try {
@@ -116,14 +116,14 @@ public class TestMain {
         //2.获取所有公有构造方法
         System.out.println("**********************所有公有构造方法*********************************");
         Constructor[] conArray = clazz.getConstructors();
-        for(Constructor c : conArray){
+        for (Constructor c : conArray) {
             System.out.println(c);
         }
 
 
         System.out.println("************所有的构造方法(包括：私有、受保护、默认、公有)***************");
         conArray = clazz.getDeclaredConstructors();
-        for(Constructor c : conArray){
+        for (Constructor c : conArray) {
             System.out.println(c);
         }
 
@@ -139,11 +139,11 @@ public class TestMain {
         //	Student stu = (Student)obj;
 
         System.out.println("******************获取私有构造方法，并调用*******************************");
-        con = clazz.getDeclaredConstructor(String.class,int.class);
+        con = clazz.getDeclaredConstructor(String.class, int.class);
         System.out.println(con);
         //调用构造方法
         con.setAccessible(true);//暴力访问(忽略掉访问修饰符)
-        obj = con.newInstance("小聋女",28);
+        obj = con.newInstance("小聋女", 28);
 
         System.out.println("******************获取私有构造方法，并调用*******************************");
         con = clazz.getDeclaredConstructor(int.class);
@@ -153,19 +153,17 @@ public class TestMain {
         obj = con.newInstance(28);
 
 
-
-
         //1.获取Class对象
         Class studentClass = Class.forName("TestReflection.Student");
         //2.获取字段
         System.out.println("************获取所有公有的字段********************");
         Field[] fieldArray = studentClass.getFields();
-        for(Field f : fieldArray){
+        for (Field f : fieldArray) {
             System.out.println(f);
         }
         System.out.println("************获取所有的字段(包括私有、受保护、默认的)********************");
         fieldArray = studentClass.getDeclaredFields();
-        for(Field f : fieldArray){
+        for (Field f : fieldArray) {
             System.out.println(f);
         }
         System.out.println("*************获取公有字段**并调用***********************************");
@@ -176,7 +174,7 @@ public class TestMain {
         //为字段设置值
         f.set(obj2, "刘德华");//为Student对象中的name属性赋值--》stu.name = "刘德华"
         //验证
-        Student stu = (Student)obj2;
+        Student stu = (Student) obj2;
         System.out.println("验证姓名：" + stu.name);
 
 
@@ -189,19 +187,16 @@ public class TestMain {
         System.out.println("验证电话：" + stu);
 
 
-
-
-
         //2.获取所有公有方法
         System.out.println("***************获取所有的”公有“方法*******************");
         stuClass.getMethods();
         Method[] methodArray = stuClass.getMethods();
-        for(Method m : methodArray){
+        for (Method m : methodArray) {
             System.out.println(m);
         }
         System.out.println("***************获取所有的方法，包括私有的*******************");
         methodArray = stuClass.getDeclaredMethods();
-        for(Method m : methodArray){
+        for (Method m : methodArray) {
             System.out.println(m);
         }
         System.out.println("***************获取公有的show1()方法*******************");
@@ -219,10 +214,6 @@ public class TestMain {
         System.out.println("返回值：" + result);
 
 
-
-
-
-
     }
 }
 
@@ -238,9 +229,10 @@ class XYZ {
     }
 }
 
-class Base{
+class Base {
     static int num = 1;
-    static{
+
+    static {
         System.out.println("base " + num);
     }
 }
@@ -253,55 +245,57 @@ class Student {
     char sex;
     private String phoneNum;
 
+    //---------------构造方法-------------------
+    //（默认的构造方法）
+    Student(String str) {
+        System.out.println("(默认)的构造方法 s = " + str);
+    }
+
+    //无参构造方法
+    public Student() {
+        System.out.println("调用了公有、无参构造方法执行了。。。");
+    }
+
+    //有一个参数的构造方法
+    public Student(char name) {
+        System.out.println("姓名：" + name);
+    }
+
+    //有多个参数的构造方法
+    public Student(String name, int age) {
+        System.out.println("姓名：" + name + "   年龄：" + age);//这的执行效率有问题，以后解决。
+    }
+
+    //受保护的构造方法
+    protected Student(boolean n) {
+        System.out.println("受保护的构造方法 n = " + n);
+    }
+
+    //私有构造方法
+    private Student(int age) {
+        System.out.println("私有的构造方法   年龄：" + age);
+    }
+
     @Override
     public String toString() {
         return "Student [name=" + name + ", age=" + age + ", sex=" + sex
                 + ", phoneNum=" + phoneNum + "]";
     }
 
-    //---------------构造方法-------------------
-    //（默认的构造方法）
-    Student(String str){
-        System.out.println("(默认)的构造方法 s = " + str);
-    }
-
-    //无参构造方法
-    public Student(){
-        System.out.println("调用了公有、无参构造方法执行了。。。");
-    }
-
-    //有一个参数的构造方法
-    public Student(char name){
-        System.out.println("姓名：" + name);
-    }
-
-    //有多个参数的构造方法
-    public Student(String name ,int age){
-        System.out.println("姓名："+name+"   年龄："+ age);//这的执行效率有问题，以后解决。
-    }
-
-    //受保护的构造方法
-    protected Student(boolean n){
-        System.out.println("受保护的构造方法 n = " + n);
-    }
-
-    //私有构造方法
-    private Student(int age){
-        System.out.println("私有的构造方法   年龄："+ age);
-    }
-
-
     //**************成员方法***************//
-    public void show1(String s){
+    public void show1(String s) {
         System.out.println("调用了：公有的，String参数的show1(): s = " + s);
     }
-    protected void show2(){
+
+    protected void show2() {
         System.out.println("调用了：受保护的，无参的show2()");
     }
-    void show3(){
+
+    void show3() {
         System.out.println("调用了：默认的，无参的show3()");
     }
-    private String show4(int age){
+
+    private String show4(int age) {
         System.out.println("调用了，私有的，并且有返回值的，int参数的show4(): age = " + age);
         return "abcd";
     }

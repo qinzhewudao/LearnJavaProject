@@ -11,7 +11,8 @@ import java.util.concurrent.locks.ReentrantLock;
 public class TestTryLock1 {
     private ArrayList<Integer> arrayList = new ArrayList<Integer>();
     private Lock lock = new ReentrantLock();    //注意这个地方
-    public static void main(String[] args)  {
+
+    public static void main(String[] args) {
         final TestTryLock1 test = new TestTryLock1();
 
         new Thread(() -> test.insert(Thread.currentThread())).start();
@@ -20,20 +21,20 @@ public class TestTryLock1 {
     }
 
     public void insert(Thread thread) {
-        if(lock.tryLock()) {
+        if (lock.tryLock()) {
             try {
-                System.out.println(thread.getName()+"得到了锁");
-                for(int i=0;i<4;i++) {
+                System.out.println(thread.getName() + "得到了锁");
+                for (int i = 0; i < 4; i++) {
                     arrayList.add(i);
                 }
             } catch (Exception e) {
                 // TODO: handle exception
-            }finally {
-                System.out.println(thread.getName()+"释放了锁");
+            } finally {
+                System.out.println(thread.getName() + "释放了锁");
                 lock.unlock();
             }
         } else {
-            System.out.println(thread.getName()+"获取锁失败");
+            System.out.println(thread.getName() + "获取锁失败");
         }
     }
 }

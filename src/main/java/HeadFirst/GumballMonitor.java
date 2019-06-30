@@ -14,7 +14,7 @@ public class GumballMonitor {
         this.gumballMachine = gumballMachine;
     }
 
-    public void report(){
+    public void report() {
         try {
             System.out.println("糖果机位置: " + gumballMachine.getLocation());
             System.out.println("目前库存 : " + gumballMachine.getCount());

@@ -7,21 +7,34 @@ package TestThread;
  */
 public class NotAtomicity {
     //静态变量t
-    public  static long t = 0;
+    public static long t = 0;
+
     //静态变量t的get方法
-    public  static long getT() {
+    public static long getT() {
         return t;
     }
+
     //静态变量t的set方法
-    public  static void setT(long t) {
+    public static void setT(long t) {
         NotAtomicity.t = t;
     }
+
+    public static void main(String[] args) {
+        new Thread(new ChangeT(100L)).start();
+        new Thread(new ChangeT(200L)).start();
+        new Thread(new ChangeT(-300L)).start();
+        new Thread(new ChangeT(-400L)).start();
+        new Thread(new ReadT()).start();
+    }
+
     //改变变量t的线程
-    public static class ChangeT implements Runnable{
+    public static class ChangeT implements Runnable {
         private long to;
+
         public ChangeT(long to) {
             this.to = to;
         }
+
         @Override
         public void run() {
             //不断的将long变量设值到 t中
@@ -32,8 +45,9 @@ public class NotAtomicity {
             }
         }
     }
+
     //读取变量t的线程，若读取的值和设置的值不一致，说明变量t的数据被破坏了，即线程不安全
-    public static class ReadT implements Runnable{
+    public static class ReadT implements Runnable {
 
         @Override
         public void run() {
@@ -49,12 +63,5 @@ public class NotAtomicity {
                 Thread.yield();
             }
         }
-    }
-    public static void main(String[] args) {
-        new Thread(new ChangeT(100L)).start();
-        new Thread(new ChangeT(200L)).start();
-        new Thread(new ChangeT(-300L)).start();
-        new Thread(new ChangeT(-400L)).start();
-        new Thread(new ReadT()).start();
     }
 }

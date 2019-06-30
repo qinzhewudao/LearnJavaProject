@@ -14,6 +14,25 @@ public class TestThreadLocal {
      */
     private ThreadLocal<String> stringLocal = ThreadLocal.withInitial(() -> Thread.currentThread().getName());
 
+    public static void main(String[] args) throws InterruptedException {
+
+        final TestThreadLocal test = new TestThreadLocal();
+
+        //test.set();//如果不先set就get会出现空指针错误
+
+        System.out.println(test);
+
+        System.out.println("##################");
+        Thread thread0 = new Thread(() -> System.out.println(test));
+        thread0.start();
+        thread0.join();
+
+        System.out.println("##################");
+
+        System.out.println(test);
+
+    }
+
     public void set() {
         longLocal.set(Thread.currentThread().getId());
         stringLocal.set(Thread.currentThread().getName());
@@ -32,26 +51,6 @@ public class TestThreadLocal {
     @Override
     public String toString() {
         return getLong() + " " + getString();
-    }
-
-
-    public static void main(String[] args) throws InterruptedException {
-
-        final TestThreadLocal test = new TestThreadLocal();
-
-        //test.set();//如果不先set就get会出现空指针错误
-
-        System.out.println(test);
-
-        System.out.println("##################");
-        Thread thread0 = new Thread(() -> System.out.println(test));
-        thread0.start();
-        thread0.join();
-
-        System.out.println("##################");
-
-        System.out.println(test);
-
     }
 
 }

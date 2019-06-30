@@ -14,9 +14,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class TestVolatile {
 
-    private volatile boolean flag = true;
-
     private final int finalInt;
+    private volatile boolean flag = true;
 
     public TestVolatile(int finalInt) {
         this.finalInt = finalInt;
@@ -27,7 +26,7 @@ public class TestVolatile {
         TestVolatile testVolatile = new TestVolatile(5);
 
         Thread threadA = new Thread(() -> {
-            while(testVolatile.flag){
+            while (testVolatile.flag) {
                 System.out.println("flag don't change");
             }
             System.out.println("flag already change");
@@ -43,8 +42,8 @@ public class TestVolatile {
 
         threadB.join();
 
-        ExecutorService executor = new ThreadPoolExecutor(10,20,
-                0L,TimeUnit.SECONDS, new LinkedBlockingDeque<>(10),new CustomizableThreadFactory());
+        ExecutorService executor = new ThreadPoolExecutor(10, 20,
+                0L, TimeUnit.SECONDS, new LinkedBlockingDeque<>(10), new CustomizableThreadFactory());
 
 
     }

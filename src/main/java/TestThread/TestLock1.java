@@ -9,9 +9,10 @@ import java.util.concurrent.locks.ReentrantLock;
  * created at 2018/7/28
  */
 public class TestLock1 {
-    private ArrayList<Integer> arrayList = new ArrayList<>();
     Lock lock = new ReentrantLock();
-    public static void main(String[] args)  {
+    private ArrayList<Integer> arrayList = new ArrayList<>();
+
+    public static void main(String[] args) {
 
         final TestLock1 test = new TestLock1();
 
@@ -27,14 +28,14 @@ public class TestLock1 {
         // 线程执行到lock.lock()处获取的是不同的锁，所以就不会发生冲突。
         lock.lock();
         try {
-            System.out.println(thread.getName()+"得到了锁");
-            for(int i=0;i<5;i++) {
+            System.out.println(thread.getName() + "得到了锁");
+            for (int i = 0; i < 5; i++) {
                 arrayList.add(i);
             }
         } catch (Exception e) {
             // TODO: handle exception
-        }finally {
-            System.out.println(thread.getName()+"释放了锁");
+        } finally {
+            System.out.println(thread.getName() + "释放了锁");
             lock.unlock();
         }
     }

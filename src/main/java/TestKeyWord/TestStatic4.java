@@ -13,6 +13,10 @@ public class TestStatic4 {
         System.out.println("test static 1");
     }
 
+    static {
+        System.out.println("test static 2");
+    }
+
     public static void testReflection() throws Exception {
 
         //创建字符串"Hello World"， 并赋给引用s
@@ -49,9 +53,5 @@ public class TestStatic4 {
         //输出false，因为s2在堆上，而s2.intern返回常量池中的对象
         String s2 = new String("HelloWorld");
         System.out.println(s2 == s2.intern());
-    }
-
-    static {
-        System.out.println("test static 2");
     }
 }

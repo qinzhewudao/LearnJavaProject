@@ -14,11 +14,31 @@ import java.util.ListIterator;
 public class MyLinkedList implements List {
     private Node first;
     private Node last;
+    private int size;
 
     public MyLinkedList() {
     }
 
-    private int size;
+    public static void main(String[] args) {
+        List list = new MyLinkedList();
+        list.add(10);
+
+        list.add(20);
+        list.add("aaa");
+
+        System.out.println(((MyLinkedList) list).size());
+
+        System.out.println(((MyLinkedList) list).get(2).getObj());
+
+        list.remove(1);
+
+        System.out.println(list.size());
+
+        list.add(1, 5);
+        System.out.println(((MyLinkedList) list).size());
+
+
+    }
 
     @Override
     public int size() {
@@ -49,14 +69,14 @@ public class MyLinkedList implements List {
     public boolean add(Object o) {
         Node n = new Node();
 
-        if(first == null){
+        if (first == null) {
             n.setPrevious(null);
             n.setObj(o);
             n.setNext(null);
 
             first = n;
             last = n;
-        }else{
+        } else {
             n.setPrevious(last);
             n.setObj(o);
             n.setNext(null);
@@ -91,11 +111,11 @@ public class MyLinkedList implements List {
 
     @Override
     public Node get(int index) {
-        if(0 > index || index >= size || first == null){
+        if (0 > index || index >= size || first == null) {
             return null;
-        }else{
+        } else {
             Node temp = first;
-            for(int i=0;i<index;i++){
+            for (int i = 0; i < index; i++) {
                 temp = temp.getNext();
             }
             return temp;
@@ -112,9 +132,9 @@ public class MyLinkedList implements List {
         Node temp = new Node();
         temp.setObj(element);
         Node node = get(index);
-        if(node == null){
+        if (node == null) {
             add(element);
-        }else{
+        } else {
             temp.setPrevious(node.getPrevious());
             temp.setNext(node);
             node.setPrevious(temp);
@@ -181,31 +201,6 @@ public class MyLinkedList implements List {
     @Override
     public Object[] toArray(Object[] a) {
         return new Object[0];
-    }
-
-
-
-
-    public static void main(String[] args){
-        List list = new MyLinkedList();
-        list.add(10);
-
-        list.add(20);
-        list.add("aaa");
-
-        System.out.println(((MyLinkedList) list).size());
-
-        System.out.println(((MyLinkedList) list).get(2).getObj());
-
-        list.remove(1);
-
-        System.out.println(list.size());
-
-        list.add(1,5);
-        System.out.println(((MyLinkedList) list).size());
-
-
-
     }
 
 }

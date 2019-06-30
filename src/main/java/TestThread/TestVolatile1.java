@@ -10,73 +10,47 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class TestVolatile1 {
 
-        public volatile int inc = 0;
+    public volatile int inc = 0;
+    //方法四 采用AtomicInteger在java 1.5的java.util.concurrent.atomic包下提供了一些原子操作类，
+    // 即对基本数据类型的 自增（加1操作），自减（减1操作）、以及加法操作（加一个数），减法操作（减一个数）
+    // 进行了封装，保证这些操作是原子性操作。atomic是利用CAS来实现原子性操作的（Compare And Swap），
+    // CAS实际上是利用处理器提供的CMPXCHG指令实现的，而处理器执行CMPXCHG指令是一个原子性操作。
+    public AtomicInteger incAtomic = new AtomicInteger();
+    //方法三采用Lock来解决一致性问题
+    Lock lock = new ReentrantLock();
 
-        public void increase () {
-            inc++;
-        }
-
-        //方法二采用Schronized来保证一致性问题
-        public synchronized void increaseBySchronized() {
-            inc++;
-        }
-
-        //方法三采用Lock来解决一致性问题
-        Lock lock = new ReentrantLock();
-
-        public  void increaseByLock() {
-            lock.lock();
-            try {
-                inc++;
-            } finally{
-                lock.unlock();
-            }
-        }
-
-
-        //方法四 采用AtomicInteger在java 1.5的java.util.concurrent.atomic包下提供了一些原子操作类，
-        // 即对基本数据类型的 自增（加1操作），自减（减1操作）、以及加法操作（加一个数），减法操作（减一个数）
-        // 进行了封装，保证这些操作是原子性操作。atomic是利用CAS来实现原子性操作的（Compare And Swap），
-        // CAS实际上是利用处理器提供的CMPXCHG指令实现的，而处理器执行CMPXCHG指令是一个原子性操作。
-        public AtomicInteger incAtomic = new AtomicInteger();
-
-        public void increaseByAtomic(){
-            incAtomic.getAndIncrement();
-        }
-
-        public static void main (String[]args){
-            final TestVolatile1 test = new TestVolatile1();
-            for (int i = 0; i < 10; i++) {
-                new Thread(() -> {
-                    for (int j = 0; j < 1000; j++)
-                    {
-                        test.increaseByAtomic();
-                        //System.out.println(test.inc);
-                    }
-                    System.out.println(Thread.currentThread().getId());
-                }).start();
-            }
-
-            System.out.println("alive thread count:"+Thread.activeCount());
-            Thread[] lstThreads = new Thread[Thread.activeCount()];
-            Thread.currentThread().getThreadGroup().enumerate(lstThreads);
-
-            int count = 0;
-            while (Thread.activeCount() > 2 && count <= 5)  //保证前面的线程都执行完,windowns下可以执行，然而mac和linux则会进入死循环
-            //因为mac和linux会将main和Monitor Ctrl-Break都放入活动线程里面。而windows则不会，只保留main所以这里应该是
-            //activeCount>2
-            {
-                Thread.yield();
-                //System.out.println("alive thread count:"+Thread.activeCount());
-                for (Thread thread :
-                        lstThreads) {
-                    //System.out.println(thread.getName());
+    public static void main(String[] args) {
+        final TestVolatile1 test = new TestVolatile1();
+        for (int i = 0; i < 10; i++) {
+            new Thread(() -> {
+                for (int j = 0; j < 1000; j++) {
+                    test.increaseByAtomic();
+                    //System.out.println(test.inc);
                 }
-                count++;
+                System.out.println(Thread.currentThread().getId());
+            }).start();
+        }
 
+        System.out.println("alive thread count:" + Thread.activeCount());
+        Thread[] lstThreads = new Thread[Thread.activeCount()];
+        Thread.currentThread().getThreadGroup().enumerate(lstThreads);
+
+        int count = 0;
+        while (Thread.activeCount() > 2 && count <= 5)  //保证前面的线程都执行完,windowns下可以执行，然而mac和linux则会进入死循环
+        //因为mac和linux会将main和Monitor Ctrl-Break都放入活动线程里面。而windows则不会，只保留main所以这里应该是
+        //activeCount>2
+        {
+            Thread.yield();
+            //System.out.println("alive thread count:"+Thread.activeCount());
+            for (Thread thread :
+                    lstThreads) {
+                //System.out.println(thread.getName());
             }
-            System.out.println(test.incAtomic);
-            //之所以加了volatile关键字之后，结果仍然不是10000的原因是
+            count++;
+
+        }
+        System.out.println(test.incAtomic);
+        //之所以加了volatile关键字之后，结果仍然不是10000的原因是
 //            可能有的朋友就会有疑问，不对啊，上面是对变量inc进行自增操作，由于volatile保证了可见性，那么在每个线程中对inc自增完之后，在其他线程中都能看到修改后的值啊，所以有10个线程分别进行了1000次操作，那么最终inc的值应该是1000*10=10000。
 //
 //　　这里面就有一个误区了，volatile关键字能保证可见性没有错，但是上面的程序错在没能保证原子性。可见性只能保证每次读取的是最新的值，但是volatile没办法保证对变量的操作的原子性。
@@ -97,7 +71,29 @@ public class TestVolatile1 {
 //
 //　　根源就在这里，自增操作不是原子性操作，而且volatile也无法保证对变量的任何操作都是原子性的。
 
+    }
+
+    public void increase() {
+        inc++;
+    }
+
+    //方法二采用Schronized来保证一致性问题
+    public synchronized void increaseBySchronized() {
+        inc++;
+    }
+
+    public void increaseByLock() {
+        lock.lock();
+        try {
+            inc++;
+        } finally {
+            lock.unlock();
         }
+    }
+
+    public void increaseByAtomic() {
+        incAtomic.getAndIncrement();
+    }
 
 }
 

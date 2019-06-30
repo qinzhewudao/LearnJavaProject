@@ -29,25 +29,13 @@ public class BinaryText {
         }
     }
 
-    /**
-     * 样式
-     */
-    public enum Style {
-        BLOD(0),
-        ITALIC(1),
-        UNDERLINE(2),
-        MIDDLELINE(3),
-        ;
+    public static void main(String[] args) {
+        BinaryText text = new BinaryText();
+        text.add(Style.BLOD, Style.ITALIC);
+        text.add(Style.MIDDLELINE);
 
-        private int val;
-
-        Style(int i) {
-            this.val = i;
-        }
-
-        public int val() {
-            return val;
-        }
+        System.out.println(text.contains(Style.BLOD));
+        System.out.println(text.get());
     }
 
     public void add(Style... styles) {
@@ -76,12 +64,23 @@ public class BinaryText {
         return StringUtils.join(list, "");
     }
 
-    public static void main(String[] args) {
-        BinaryText text = new BinaryText();
-        text.add(Style.BLOD, Style.ITALIC);
-        text.add(Style.MIDDLELINE);
+    /**
+     * 样式
+     */
+    public enum Style {
+        BLOD(0),
+        ITALIC(1),
+        UNDERLINE(2),
+        MIDDLELINE(3),;
 
-        System.out.println(text.contains(Style.BLOD));
-        System.out.println(text.get());
+        private int val;
+
+        Style(int i) {
+            this.val = i;
+        }
+
+        public int val() {
+            return val;
+        }
     }
 }

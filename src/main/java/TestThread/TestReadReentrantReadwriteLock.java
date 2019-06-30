@@ -9,7 +9,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 public class TestReadReentrantReadwriteLock {
     private ReentrantReadWriteLock rwl = new ReentrantReadWriteLock();
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         final TestReadReentrantReadwriteLock test = new TestReadReentrantReadwriteLock();
 
         new Thread(() -> test.get(Thread.currentThread())).start();
@@ -23,10 +23,10 @@ public class TestReadReentrantReadwriteLock {
         try {
             long start = System.currentTimeMillis();
 
-            while(System.currentTimeMillis() - start <= 1.1) {
-                System.out.println(thread.getName()+"正在进行读操作");
+            while (System.currentTimeMillis() - start <= 1.1) {
+                System.out.println(thread.getName() + "正在进行读操作");
             }
-            System.out.println(thread.getName()+"读操作完毕");
+            System.out.println(thread.getName() + "读操作完毕");
         } finally {
             rwl.readLock().unlock();
         }

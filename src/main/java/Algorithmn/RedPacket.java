@@ -43,6 +43,18 @@ public class RedPacket {
 
     private int recursiveCount = 0;
 
+    public static void main(String[] args) {
+        RedPacket redPacket = new RedPacket();
+        List<Integer> redPackets = redPacket.splitRedPacket(20000, 100);
+        System.out.println(redPackets);
+
+        int sum = 0;
+        for (Integer red : redPackets) {
+            sum += red;
+        }
+        System.out.println(sum);
+    }
+
     public List<Integer> splitRedPacket(int money, int count) {
         List<Integer> moneys = new LinkedList<>();
 
@@ -127,19 +139,6 @@ public class RedPacket {
         }
 
         return OK;
-    }
-
-
-    public static void main(String[] args) {
-        RedPacket redPacket = new RedPacket();
-        List<Integer> redPackets = redPacket.splitRedPacket(20000, 100);
-        System.out.println(redPackets);
-
-        int sum = 0;
-        for (Integer red : redPackets) {
-            sum += red;
-        }
-        System.out.println(sum);
     }
 
 }

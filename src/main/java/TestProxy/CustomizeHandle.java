@@ -27,6 +27,12 @@ public class CustomizeHandle implements InvocationHandler {
         }
     }
 
+    public static void main(String[] args) {
+//        CustomizeHandle handle = new CustomizeHandle(ISubjectImpl.class);
+//        ISubject subject = (ISubject) Proxy.newProxyInstance(CustomizeHandle.class.getClassLoader(), new Class[]{ISubject.class}, handle);
+//        subject.execute();
+    }
+
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
@@ -38,19 +44,12 @@ public class CustomizeHandle implements InvocationHandler {
         return result;
     }
 
-
     private void before() {
         LOGGER.info("handle before");
     }
 
     private void after() {
         LOGGER.info("handle after");
-    }
-    
-    public static void main(String[] args){
-//        CustomizeHandle handle = new CustomizeHandle(ISubjectImpl.class);
-//        ISubject subject = (ISubject) Proxy.newProxyInstance(CustomizeHandle.class.getClassLoader(), new Class[]{ISubject.class}, handle);
-//        subject.execute();
     }
 
 }

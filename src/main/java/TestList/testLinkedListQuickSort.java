@@ -12,24 +12,6 @@ import java.util.List;
  */
 public class testLinkedListQuickSort {
 
-    static class Node {
-        int value;
-        Node pre;
-        Node next;
-
-        Node(int value) {
-            this.value = value;
-        }
-
-        @Override
-        public String toString() {
-            if (this.next == null) {
-                return String.valueOf(this.value);
-            }
-            return this.value + "->" + this.next.toString();
-        }
-    }
-
     /**
      * 参数为头节点和尾节点
      */
@@ -126,6 +108,24 @@ public class testLinkedListQuickSort {
         List<Integer> list = new LinkedList(Arrays.asList(l));
         quickSort(list);
         System.out.println("Sorted list: " + list);
+    }
+
+    static class Node {
+        int value;
+        Node pre;
+        Node next;
+
+        Node(int value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            if (this.next == null) {
+                return String.valueOf(this.value);
+            }
+            return this.value + "->" + this.next.toString();
+        }
     }
 
 }

@@ -7,20 +7,9 @@ import java.io.Serializable;
 
 public class FlyPig implements Serializable {
     private static final long serialVersionUID = 1L;
-
+    private static String AGE = "269";
     //初始化version版本号
     private final long version = 2L;
-
-    private void writeObject(ObjectOutputStream out) throws IOException {
-        out.defaultWriteObject();
-        if (version == 1L) { //1版本
-            out.writeObject(addTip);
-        } else if (version == 2L) { //2版本
-            out.writeObject(addTip);
-        } else {
-            throw new InvalidClassException("请升级版本"); //抛出异常了
-        }
-    }
     /*
     串行化版本统一标识符-serialVersionUID
     java通过一个名为UID（stream unique identifier）来控制，这个UID是隐式的，它通过类名，
@@ -37,13 +26,21 @@ public class FlyPig implements Serializable {
     向下兼容：老的版本能够读取新的数据序列流。有些新的字段可能会没有值，所以需要由一个版本号
     来进行区分维护，以适应读取不同的数据流的要求。
      */
-
-    private static String AGE = "269";
     private String name;
     private String color;
     transient private String car;
-
     private String addTip;
+
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+        if (version == 1L) { //1版本
+            out.writeObject(addTip);
+        } else if (version == 2L) { //2版本
+            out.writeObject(addTip);
+        } else {
+            throw new InvalidClassException("请升级版本"); //抛出异常了
+        }
+    }
 
     public String getName() {
         return name;

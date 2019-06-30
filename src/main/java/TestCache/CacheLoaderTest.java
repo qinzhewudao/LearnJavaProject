@@ -20,12 +20,30 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class CacheLoaderTest {
     private final static Logger LOGGER = LoggerFactory.getLogger(CacheLoaderTest.class);
-    private LoadingCache<Integer, AtomicLong> loadingCache;
     private final static Integer KEY = 1000;
-
-
     private final static LinkedBlockingQueue<Integer> QUEUE = new LinkedBlockingQueue<>(1000);
+    private LoadingCache<Integer, AtomicLong> loadingCache;
 
+    public static void main(String[] args) throws InterruptedException {
+        CacheLoaderTest cacheLoaderTest = new CacheLoaderTest();
+        cacheLoaderTest.init();
+
+
+        while (true) {
+
+            try {
+                Integer integer = QUEUE.poll(200, TimeUnit.MILLISECONDS);
+                if (null == integer) {
+                    break;
+                }
+                TimeUnit.SECONDS.sleep(5);
+                cacheLoaderTest.checkAlert(integer);
+                LOGGER.info("job running times={}", integer);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     private void init() throws InterruptedException {
         loadingCache = CacheBuilder.newBuilder()
@@ -61,27 +79,6 @@ public class CacheLoaderTest {
             LOGGER.error("Exception", e);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        CacheLoaderTest cacheLoaderTest = new CacheLoaderTest();
-        cacheLoaderTest.init();
-
-
-        while (true) {
-
-            try {
-                Integer integer = QUEUE.poll(200, TimeUnit.MILLISECONDS);
-                if (null == integer) {
-                    break;
-                }
-                TimeUnit.SECONDS.sleep(5);
-                cacheLoaderTest.checkAlert(integer);
-                LOGGER.info("job running times={}", integer);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
     }
 

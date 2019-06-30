@@ -15,6 +15,7 @@ public class GumballMachineTestDrive {
      * 糖果机位置: 东直门
      * 目前库存 : 500
      * 当前状态 : 售卖中...
+     *
      * @param args
      */
     public static void main(String[] args) throws MalformedURLException, NotBoundException {
@@ -24,7 +25,7 @@ public class GumballMachineTestDrive {
         GumballMonitor[] monitor = new GumballMonitor[location.length];
         for (int i = 0; i < location.length; i++) {
             try {
-                GumballMachine gumballMachine = new GumballMachine("近铁",500);
+                GumballMachine gumballMachine = new GumballMachine("近铁", 500);
                 monitor[i] = new GumballMonitor(gumballMachine);
                 System.out.println(monitor[i]);
 

@@ -5,12 +5,11 @@ package TestCollection;
  * created at 2018/8/22
  */
 //导入 Arrays 类, 这样才能用它的方法
+
 import java.util.Arrays;
 
-public class TestArrays
-{
-    public static void main(String[] args)
-    {
+public class TestArrays {
+    public static void main(String[] args) {
         //定义一个 a 数组, 使用静态初始化
         int[] a = new int[]{3, 4, 5, 6};
         //定义一个 b 数组, 使用静态初始化

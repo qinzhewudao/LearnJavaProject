@@ -5,7 +5,7 @@ package TestMath;
  * created at 2018/8/1
  */
 public class TestMath1 {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         //取整相关操作
         System.out.println(Math.ceil(3.2));
         System.out.println(Math.floor(3.2));
@@ -22,5 +22,5 @@ public class TestMath1 {
         //随机数
         System.out.println(Math.random());// [0,1)
     }
-    
+
 }

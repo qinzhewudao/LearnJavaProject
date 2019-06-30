@@ -5,8 +5,8 @@ package TestThread;
  * created at 2018/7/27
  */
 public class TestThread1 {
-    public static void main(String[] args)  {
-        System.out.println("主线程ID:"+Thread.currentThread().getId());
+    public static void main(String[] args) {
+        System.out.println("主线程ID:" + Thread.currentThread().getId());
         MyThread thread1 = new MyThread("调用start方法生成的thread1");
         thread1.start();
         MyThread thread2 = new MyThread("调用run方法生成的thread2");
@@ -14,7 +14,7 @@ public class TestThread1 {
         thread2.run();
 
         //线程的第二种创建方法
-        System.out.println("主线程ID："+Thread.currentThread().getId());
+        System.out.println("主线程ID：" + Thread.currentThread().getId());
         MyRunnable runnable = new MyRunnable();
         Thread thread = new Thread(runnable);
         thread.start();
@@ -23,11 +23,11 @@ public class TestThread1 {
 
         //简便写法
 
-           new Thread(){
-               public void run() {
-                  // fun1();
-               }
-           }.start();
+        new Thread() {
+            public void run() {
+                // fun1();
+            }
+        }.start();
 
 //
 //        ProcessBuilder processBuilder = new ProcessBuilder("bin/sh","/c","ipconfig/all");
@@ -49,21 +49,21 @@ public class TestThread1 {
 }
 
 
-class MyThread extends Thread{
+class MyThread extends Thread {
     private String name;
 
-    public MyThread(String name){
+    public MyThread(String name) {
         this.name = name;
     }
 
     @Override
     public void run() {
-        System.out.println("name:"+name+" 子线程ID:"+Thread.currentThread().getId());
+        System.out.println("name:" + name + " 子线程ID:" + Thread.currentThread().getId());
     }
 }
 
 
-class MyRunnable implements Runnable{
+class MyRunnable implements Runnable {
 
     public MyRunnable() {
 
@@ -71,6 +71,6 @@ class MyRunnable implements Runnable{
 
     @Override
     public void run() {
-        System.out.println("实现Runable接口生成的子线程ID："+Thread.currentThread().getId());
+        System.out.println("实现Runable接口生成的子线程ID：" + Thread.currentThread().getId());
     }
 }

@@ -61,5 +61,5 @@ public class TestCyclicBarrierBroken {
         LOGGER.info("reset()之后，当前等待线程数量：" + barrier1.getNumberWaiting());
         executorService.shutdown();
     }
-    
+
 }

@@ -10,8 +10,7 @@ import java.io.IOException;
  * created at 2018/8/7
  */
 public class TestWriter1 {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         try {
             String content = "Thank you for your fish.";
 

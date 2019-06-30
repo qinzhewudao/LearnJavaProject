@@ -18,20 +18,20 @@ public class TestVector {
         Vector<Integer> vector = new Vector<>();
 
         long start = System.currentTimeMillis();
-        for(int i=0;i<100_0000;i++){
+        for (int i = 0; i < 100_0000; i++) {
             list.add(i);
         }
         long end = System.currentTimeMillis();
 
-        System.out.println("ArrayList插入1000000元素用时"+(end-start)+"ms");
+        System.out.println("ArrayList插入1000000元素用时" + (end - start) + "ms");
 
         start = System.currentTimeMillis();
-        for(int i=0;i<100_0000;i++){
+        for (int i = 0; i < 100_0000; i++) {
             vector.add(i);
         }
         end = System.currentTimeMillis();
 
-        System.out.println("Vector插入1000000元素用时"+(end-start)+"ms");
+        System.out.println("Vector插入1000000元素用时" + (end - start) + "ms");
 
 
         ArrayList<Integer> arrayList2 = new ArrayList<>();
@@ -45,7 +45,7 @@ public class TestVector {
 
         Thread thread1 = new Thread(() -> {
             Iterator<Integer> iterator = arrayList2.iterator();
-            while(iterator.hasNext()){
+            while (iterator.hasNext()) {
                 Integer integer = iterator.next();
                 System.out.println(integer);
                 try {

@@ -26,37 +26,37 @@ interface DynamicSubject//抽象角色
 
 class DynamicRealSubject implements DynamicSubject//真实角色
 {
-    public void doSomething()
-    {
-        System.out.println( "call doSomething(),I'm doing my work now。" );
+    public void doSomething() {
+        System.out.println("call doSomething(),I'm doing my work now。");
     }
 }
+
 class DynamicProxyHandler implements InvocationHandler//代理角色
 {
     private Object tar;
+
     //绑定委托对象，并返回代理类
-    Object bind(Object tar)
-    {
+    Object bind(Object tar) {
         this.tar = tar;
         //绑定该类实现的所有接口，取得代理类
         return Proxy.newProxyInstance(tar.getClass().getClassLoader(),
                 tar.getClass().getInterfaces(),
                 this);
     }
-    public Object invoke(Object proxy , Method method , Object[] args)throws Throwable//不依赖具体接口实现
+
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable//不依赖具体接口实现
     {
         Object result;//被代理的类型为Object基类
         //这里就可以进行所谓的AOP编程了
         //在调用具体函数方法前，执行功能处理
-        result = method.invoke(tar,args);
+        result = method.invoke(tar, args);
         //在调用具体函数方法后，执行功能处理
         return result;
     }
 }
-public class TestDynamicProxy
-{
-    public static void main(String args[])
-    {
+
+public class TestDynamicProxy {
+    public static void main(String args[]) {
         DynamicProxyHandler proxy = new DynamicProxyHandler();
         //绑定该类实现的所有接口
         DynamicSubject sub = (DynamicSubject) proxy.bind(new DynamicRealSubject());

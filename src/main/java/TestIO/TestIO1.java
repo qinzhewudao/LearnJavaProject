@@ -10,7 +10,7 @@ public class TestIO1 {
 
     public static void main(String[] args) throws IOException {
         File file = new File("hello.txt");
-        if(!file.exists()){
+        if (!file.exists()) {
             file.createNewFile();
         }
         try {
@@ -24,8 +24,7 @@ public class TestIO1 {
                 line = br.readLine();
             }
             br.close();
-        }
-        catch(FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }

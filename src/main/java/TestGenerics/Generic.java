@@ -7,7 +7,7 @@ package TestGenerics;
 
 //此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型
 //在实例化泛型类时，必须指定T的具体类型
-public class Generic<T>{
+public class Generic<T> {
     //key这个成员变量的类型为T,T的类型由外部指定
     private T key;
 
@@ -15,11 +15,11 @@ public class Generic<T>{
         this.key = key;
     }
 
-    public T getKey(){ //泛型方法getKey的返回值类型为T，T的类型由外部指定
-        return key;
+    public static void showKeyValue(Generic<Number> obj) {
+        System.out.println("泛型测试 key value is " + obj.getKey());
     }
 
-    public static void showKeyValue(Generic<Number> obj){
+    public static void showKeyValue1(Generic<?> obj) {
         System.out.println("泛型测试 key value is " + obj.getKey());
     }
 
@@ -29,34 +29,7 @@ public class Generic<T>{
     引用类型。由此类型通配符应运而生。
     我们可以将上面的方法改一下：*/
 
-    public static void showKeyValue1(Generic<?> obj){
-        System.out.println("泛型测试 key value is " + obj.getKey());
-    }
-    /*
-    类型通配符一般是使用？代替具体的类型实参，注意了，此处’？’是类型实参，而不是类型形参 。
-    重要说三遍！此处’？’是类型实参，而不是类型形参 ！
-    此处’？’是类型实参，而不是类型形参 ！再直白点的意思就是，
-    此处的？和Number、String、Integer一样都是一种实际的类型，
-    可以把？看成所有类型的父类。是一种真实的类型。
-     */
-
-    /**
-     * 泛型方法的基本介绍
-     * @param tClass 传入的泛型实参
-     * @return T 返回值为T类型
-     * 说明：
-     *     1）public 与 返回值中间<T>非常重要，可以理解为声明此方法为泛型方法。
-     *     2）只有声明了<T>的方法才是泛型方法，泛型类中的使用了泛型的成员方法并不是泛型方法。
-     *     3）<T>表明该方法将使用泛型类型T，此时才可以在方法中使用泛型类型T。
-     *     4）与泛型类的定义一样，此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型。
-     */
-    public <T> T genericMethod(Class<T> tClass)throws InstantiationException ,
-            IllegalAccessException{
-        T instance = tClass.newInstance();
-        return instance;
-    }
-
-    public static void main(String[] args){
+    public static void main(String[] args) {
         //泛型的类型参数只能是类类型（包括自定义类），不能是简单类型
         //传入的实参类型需与泛型的类型参数类型相同，即为Integer.
         Generic<Integer> genericInteger = new Generic<>(123456);
@@ -89,5 +62,33 @@ public class Generic<T>{
 // cannot be applied to Generic<java.lang.Number>
 // showKeyValue(gInteger);
     }
-    
+    /*
+    类型通配符一般是使用？代替具体的类型实参，注意了，此处’？’是类型实参，而不是类型形参 。
+    重要说三遍！此处’？’是类型实参，而不是类型形参 ！
+    此处’？’是类型实参，而不是类型形参 ！再直白点的意思就是，
+    此处的？和Number、String、Integer一样都是一种实际的类型，
+    可以把？看成所有类型的父类。是一种真实的类型。
+     */
+
+    public T getKey() { //泛型方法getKey的返回值类型为T，T的类型由外部指定
+        return key;
+    }
+
+    /**
+     * 泛型方法的基本介绍
+     *
+     * @param tClass 传入的泛型实参
+     * @return T 返回值为T类型
+     * 说明：
+     * 1）public 与 返回值中间<T>非常重要，可以理解为声明此方法为泛型方法。
+     * 2）只有声明了<T>的方法才是泛型方法，泛型类中的使用了泛型的成员方法并不是泛型方法。
+     * 3）<T>表明该方法将使用泛型类型T，此时才可以在方法中使用泛型类型T。
+     * 4）与泛型类的定义一样，此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型。
+     */
+    public <T> T genericMethod(Class<T> tClass) throws InstantiationException,
+            IllegalAccessException {
+        T instance = tClass.newInstance();
+        return instance;
+    }
+
 }

@@ -28,10 +28,10 @@ public class TestReadSynchronized {
 
     public synchronized void getBySynchronized(Thread thread) {
         long start = System.currentTimeMillis();
-        while(System.currentTimeMillis() - start <= 1) {
-            System.out.println(thread.getName()+"正在进行读操作");
+        while (System.currentTimeMillis() - start <= 1) {
+            System.out.println(thread.getName() + "正在进行读操作");
         }
-        System.out.println(thread.getName()+"读操作完毕");
+        System.out.println(thread.getName() + "读操作完毕");
     }
 
     public void getByReentrantReadWriteLock(Thread thread) {
@@ -39,10 +39,10 @@ public class TestReadSynchronized {
         try {
             long start = System.currentTimeMillis();
 
-            while(System.currentTimeMillis() - start <= 1) {
-                System.out.println(thread.getName()+"正在进行读操作");
+            while (System.currentTimeMillis() - start <= 1) {
+                System.out.println(thread.getName() + "正在进行读操作");
             }
-            System.out.println(thread.getName()+"读操作完毕");
+            System.out.println(thread.getName() + "读操作完毕");
         } finally {
             rwl.readLock().unlock();
         }

@@ -17,8 +17,8 @@ class Clock {
     }
 }
 
-public class ClockTestDrive{
-    public static void main(String[] args){
+public class ClockTestDrive {
+    public static void main(String[] args) {
         Clock c = new Clock();
         c.setTime("1245");
 
