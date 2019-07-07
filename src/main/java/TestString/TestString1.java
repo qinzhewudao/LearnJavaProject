@@ -28,6 +28,9 @@ public class TestString1 {
 
         /*
 
+        因为内存的分配方式不一样。String str="i"的方式，Java 虚拟机会将其分配到常量池中；
+        而 String str=new String("i") 则会被分到堆内存中。
+
         这里面涉及到的是String.intern方法的使用。在String类中，intern方法是一个本地方法，
         在JAVA SE6之前，intern方法会在运行时常量池中查找是否存在内容相同的字符串，如果存在则返回指
         向该字符串的引用，如果不存在，则会将该字符串入池，并返回一个指向该字符串的引用。因此，a和d指向的是同一个对象。
