@@ -205,7 +205,8 @@ public class Tree<AnyType extends Comparable<? super AnyType>> {
         }
     }
 
-    private void posOrder2(BinaryNode node) {
+    private void posOrder2(BinaryNode root) {
+        BinaryNode node = root;
         if (null == node) {
             return;
         }

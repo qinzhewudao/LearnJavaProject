@@ -256,7 +256,8 @@ public class Sort {
 
     public static int halfSearch(int[] nums, int left, int right, int target) {
         if (left <= right) {
-            int mid = (left + right) / 2;
+            //避免溢出
+            int mid = left + (right - left) / 2;
             int midValue = nums[mid];
             if (midValue > target) {
                 return halfSearch(nums, left, mid - 1, target);
@@ -272,8 +273,9 @@ public class Sort {
     public static int halfSearch(int[] nums, int target) {
         int left = 0;
         int right = nums.length - 1;
-        while (left < right) {
-            int mid = (left + right) / 2;
+        while (left <= right) {
+            //避免溢出
+            int mid = left + (right - left) / 2;
             int midValue = nums[mid];
             if (midValue > target) {
                 right = mid - 1;
