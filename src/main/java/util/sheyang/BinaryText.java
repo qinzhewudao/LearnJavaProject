@@ -30,6 +30,7 @@ public class BinaryText {
     }
 
     public static void main(String[] args) {
+
         BinaryText text = new BinaryText();
         text.add(Style.BLOD, Style.ITALIC);
         text.add(Style.MIDDLELINE);
