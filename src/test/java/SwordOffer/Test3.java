@@ -1,6 +1,7 @@
 package SwordOffer;
 
 import SwordOfferByNet.FindNumber3;
+import cache.LocalCacheUtil;
 import org.junit.Test;
 
 /**
@@ -18,5 +19,20 @@ public class Test3 {
         int target = 6;
         System.out.println("解法一：两个指针，数组中是否含有" + target + " ：" + FindNumber3.find(testArray, target));
         System.out.println("解法二：二分法，数组中是否含有" + target + " ：" + FindNumber3.find(target, testArray));
+    }
+
+    public static void main(String[] args) {
+        LocalCacheUtil.getInstance().put("sheYang", "test1");
+        for (int i = 0; i < 100; i++) {
+            System.out.println(LocalCacheUtil.getInstance().getIfPresent("sheYang"));
+        }
+        System.out.println(LocalCacheUtil.getInstance().getKeysSize());
+        System.out.println(LocalCacheUtil.getInstance().getCacheStats());
+        LocalCacheUtil.getInstance().rebuild(10, 10);
+        System.out.println(LocalCacheUtil.getInstance().getIfPresent("sheYang"));
+        System.out.println(LocalCacheUtil.getInstance().getKeysSize());
+        System.out.println(LocalCacheUtil.getInstance().getCacheStats());
+        LocalCacheUtil.getInstance().put("sheYang", null);
+        System.out.println(LocalCacheUtil.getInstance().getIfPresent("sheYang"));
     }
 }

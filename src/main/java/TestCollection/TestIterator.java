@@ -16,7 +16,8 @@ public class TestIterator {
         for (Iterator<String> item = aList.iterator(); item.hasNext(); ) {
             String temp = item.next();
             System.out.print(temp + "\t");
-            if (temp.endsWith("3")) {// 删除3结尾的字符串
+            // 删除3结尾的字符串
+            if (temp.endsWith("3")) {
                 item.remove();
             }
         }
@@ -34,7 +35,7 @@ public class TestIterator {
         System.out.println();
         System.out.println(set);
 
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<>();
         map.put("A", "高淇");
         map.put("B", "高小七");
         Set<Map.Entry<String, String>> ss = map.entrySet();

@@ -38,40 +38,43 @@ public class AnswerApp {
 
         String[] keyWords = keyWord.split(",");
 
-        File file = new File("C:\\Users\\answer\\work detail.txt");
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-
-        // 直接读取文本到集合中. commons.io 包
-//		List<String> datas = FileUtils.readLines(file, Charsets.UTF_8);
-
-        String line;
-
         // 定义一个结果存储容器, key 为 关键词, value 为关键词出现的次数
         HashMap<String, Integer> resultMap = new HashMap<>();
 
-        while ((line = bufferedReader.readLine()) != null) {
-            for (String kw : keyWords) {
-                kw = kw.trim();
+        File file = new File("C:\\Users\\answer\\work detail.txt");
 
-                if (StringUtils.isEmpty(kw)) {
-                    continue;
-                }
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
 
-                int count = line.split(kw).length - 1;
+            // 直接读取文本到集合中. commons.io 包
+//		List<String> datas = FileUtils.readLines(file, Charsets.UTF_8);
 
-                // 如果是以 关键词 结尾的, 此处会统计不到, 因此要单独判断
-                if (count == 0) {
-                    if (line.endsWith(kw)) {
-                        count = 1;
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                for (String kw : keyWords) {
+                    kw = kw.trim();
+
+                    if (StringUtils.isEmpty(kw)) {
+                        continue;
+                    }
+
+                    int count = line.split(kw).length - 1;
+
+                    // 如果是以 关键词 结尾的, 此处会统计不到, 因此要单独判断
+                    if (count == 0) {
+                        if (line.endsWith(kw)) {
+                            count = 1;
+                        }
+                    }
+
+                    if (resultMap.containsKey(kw)) {
+                        resultMap.put(kw, resultMap.get(kw) + count);
+                    } else {
+                        resultMap.put(kw, count);
                     }
                 }
-
-                if (resultMap.containsKey(kw)) {
-                    resultMap.put(kw, resultMap.get(kw) + count);
-                } else {
-                    resultMap.put(kw, count);
-                }
             }
+
         }
 
         List<Map.Entry<String, Integer>> list = Lists.newArrayList(resultMap.entrySet());

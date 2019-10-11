@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class Test52 {
 
     @Test
-    public void test52() throws Exception {
+    public void test52() {
         int[] arr = {2, 3, 4, 5};
         System.out.println("乘积数组：" + Arrays.toString(MultiplyArray52.multiply(arr)));
     }
