@@ -1,11 +1,5 @@
 package util.sheyang;
 
-/**
- * author sheyang
- * created at 2018/10/24
- */
-
-import com.sun.deploy.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,6 +7,8 @@ import java.util.EnumSet;
 import java.util.List;
 
 /**
+ * * author sheyang
+ * * created at 2018/10/24
  * 文本
  * 样式包括粗体，斜体，下划线，中划线等多种情况，每种情况可以并存
  * 用 EnumSet 代替字符串处理
@@ -24,9 +20,7 @@ public class BinaryText {
     private String[] texts = new String[Style.values().length];
 
     public BinaryText() {
-        for (int i = 0; i < texts.length; i++) {
-            texts[i] = "0";
-        }
+        Arrays.fill(texts, "0");
     }
 
     public static void main(String[] args) {
@@ -57,12 +51,14 @@ public class BinaryText {
      * @return
      */
     public String get() {
-        set.forEach(e -> {
-            texts[e.val()] = "1";
-        });
+        set.forEach(e -> texts[e.val()] = "1");
         List<String> list = Arrays.asList(texts);
         Collections.reverse(list);
-        return StringUtils.join(list, "");
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String s : list) {
+            stringBuilder.append(s);
+        }
+        return stringBuilder.toString();
     }
 
     /**
@@ -72,7 +68,8 @@ public class BinaryText {
         BLOD(0),
         ITALIC(1),
         UNDERLINE(2),
-        MIDDLELINE(3),;
+        MIDDLELINE(3),
+        ;
 
         private int val;
 
