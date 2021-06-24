@@ -29,6 +29,14 @@ public class CopyOnWriteArrayListDemo {
         //Get iterator 2
         Iterator<Integer> itr2 = list.iterator();
 
+        list.add(5);
+
+        //[1, 2, 3, 4, 5]
+        System.out.println(list);
+
+        //Get iterator 3
+        Iterator<Integer> itr3 = list.iterator();
+
         System.out.println("====Verify Iterator 1 content====");
 
         //1,2,3
@@ -38,6 +46,11 @@ public class CopyOnWriteArrayListDemo {
 
         //1,2,3,4
         itr2.forEachRemaining(System.out::println);
+
+        System.out.println("====Verify Iterator 3 content====");
+
+        //1,2,3,4
+        itr3.forEachRemaining(System.out::println);
     }
 
 }
