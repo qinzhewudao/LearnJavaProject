@@ -1,4 +1,4 @@
-package test.disruptor;
+package Disruptor;
 
 import com.lmax.disruptor.RingBuffer;
 import org.slf4j.Logger;
