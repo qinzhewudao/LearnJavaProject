@@ -128,7 +128,6 @@ public class Tree<AnyType extends Comparable<? super AnyType>> {
         if (node == null) {
             return 0;
         }
-
         int l = depth(node.left);
         int r = depth(node.right);
         if (l > r) {

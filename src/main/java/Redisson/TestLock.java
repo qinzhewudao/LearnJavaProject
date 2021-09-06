@@ -19,9 +19,13 @@ public class TestLock {
         config.useSingleServer().setAddress("redis://r-bp1a89fc54c31384331.redis.rds.aliyuncs.com:6379").setDatabase(88).setPassword("HT4s6S46cOfJzD9b");
         RedissonClient redissonClient = Redisson.create(config);
         RLock rLock = redissonClient.getLock("sheyang");
-        rLock.lock();
-        TimeUnit.SECONDS.sleep(30);
-        rLock.unlock();
+        for (int i = 0; i < 10; i++) {
+            System.out.println("lock" + i);
+            rLock.lock();
+            TimeUnit.SECONDS.sleep(1);
+            rLock.unlock();
+            System.out.println("lock" + i);
+        }
     }
 
 }

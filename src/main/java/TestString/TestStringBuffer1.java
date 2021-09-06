@@ -15,6 +15,7 @@ String 和 StringBuffer、StringBuilder 的区别在于 String 声明的是不�
 
 StringBuffer 和 StringBuilder 最大的区别在于，StringBuffer 是线程安全的，而 StringBuilder 是非线程安全的，
 但 StringBuilder 的性能却高于 StringBuffer，所以在单线程环境下推荐使用 StringBuilder，多线程环境下推荐使用 StringBuffer。
+StringBuffer 单纯的给每个操作都加上了 synchronized
          */
         StringBuffer s;
         s = new StringBuffer("java");

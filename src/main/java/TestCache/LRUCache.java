@@ -22,6 +22,20 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * LRU-2
+ * LRU-K
+ * <p>
+ * LRU-K 中的 K 代表最近使用的次数，因此 LRU 可以认为是 LRU-1。LRU-K 的主要目的是为了解决 LRU 算法“缓存污染”的问题，其核心思想是将“最近使用过 1 次”的判断标准扩展为“最近使用过 K 次”。
+ * <p>
+ * LRU-K 需要多维护一个队列，用于记录所有缓存数据被访问的历史。只有当数据的访问次数达到 K 次的时候，才将数据放入缓存。下一次访问数据，同样先加入到历史队列，再次达到 K 次时，把它从历史队列删除，同时调整在缓存队列中的位置。也就是说，访问 K 次调整一次在缓存队列中的位置。
+ * <p>
+ * 缓存中的数据遵循 LRU 的规则，即在需要淘汰时，选择第 K 次访问时间距当前时间最大的数据淘汰。
+ * <p>
+ * 实际应用中 LRU-2 是综合各种因素后最优的选择，LRU-3 或者更大的 K 值命中率会高，但适应性差，需要大量的数据访问才能将历史访问记录清除掉。
+ * <p>
+ * 下面借用 LinkedHashMap 实现 LRU2 算法。
+ * ————————————————
+ * 版权声明：本文为CSDN博主「Augustvic」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+ * 原文链接：https://blog.csdn.net/Victorgcx/article/details/104378378
  * </p>
  * When the data accessed for the first time, add it to history list. If the size of history list reaches max capacity, eliminate the earliest data (first in first out).
  * When the data already exists in the history list, and be accessed for the second time, then it will be put into cache.

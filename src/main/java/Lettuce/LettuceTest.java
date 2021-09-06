@@ -27,6 +27,11 @@ public class LettuceTest {
         StatefulRedisClusterConnection<String, String> connect = client.connect();
         RedisClusterAsyncCommands<String, String> async = connect.async();
 
+
+        System.out.println(connect instanceof StatefulRedisConnection);
+
+
+
         RedisURI uri2 = RedisURI.builder()
                 .withHost("r-bp1fr1olhpc5jbj0qk.redis.rds.aliyuncs.com")
                 .withPassword("fy9u6dMSTbFNrKqn".toCharArray())
@@ -36,6 +41,9 @@ public class LettuceTest {
         RedisClient client2 = RedisClient.create(uri2);
         StatefulRedisConnection<String, String> connect2 = client2.connect();
         RedisClusterAsyncCommands<String, String> async2 = connect2.async();
+
+        System.out.println(connect2 instanceof StatefulRedisClusterConnection);
+
 
         // 断点1
         System.out.println(async.get("beacon_ssd").get());
