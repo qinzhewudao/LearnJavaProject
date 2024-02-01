@@ -17,4 +17,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.sy.java.util</groupId>
+            <artifactId>thunder</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>
