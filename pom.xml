@@ -7,6 +7,10 @@
     <groupId>sy</groupId>
     <artifactId>LearnJavaProject</artifactId>
     <version>1.0-RELEASE</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>learn-test</module>
+    </modules>
     <build>
         <plugins>
             <plugin>
@@ -165,6 +169,12 @@
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
             <version>3.2.12</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
         </dependency>
 
     </dependencies>
