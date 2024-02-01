@@ -4,6 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>sy</groupId>
+        <artifactId>LearnJavaProject</artifactId>
+        <version>1.0.1-SNAPSHOT</version>
+    </parent>
+
     <groupId>com.sy.java.util</groupId>
     <artifactId>thunder</artifactId>
     <version>1.0.0-SNAPSHOT</version>
@@ -32,13 +38,11 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.60</version>
         </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.8</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/ws.schild/jave-core -->
@@ -61,6 +65,11 @@
             <version>3.3.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.15.1</version>
+        </dependency>
     </dependencies>
 
 </project>

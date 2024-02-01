@@ -6,9 +6,10 @@
 
     <groupId>sy</groupId>
     <artifactId>LearnJavaProject</artifactId>
-    <version>1.0-RELEASE</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
+        <module>thunder</module>
         <module>learn-test</module>
     </modules>
     <build>
@@ -16,6 +17,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
                 <configuration>
                     <source>8</source>
                     <target>8</target>
@@ -29,6 +31,26 @@
         <lunece.version>4.10.2</lunece.version>
 
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.30</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>2.0.40</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sy.java.util</groupId>
+                <artifactId>thunder</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
 
@@ -94,27 +116,21 @@
         </dependency>
 
         <dependency>
-            <groupId>com.sy.java.util</groupId>
-            <artifactId>thunder</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>4.1.65.Final</version>
+            <version>4.1.86.Final</version>
         </dependency>
 
         <dependency>
             <groupId>io.github.classgraph</groupId>
             <artifactId>classgraph</artifactId>
-            <version>4.8.65</version>
+            <version>4.8.165</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>5.2.3.RELEASE</version>
+            <version>5.2.21.RELEASE</version>
         </dependency>
 
         <dependency>
@@ -138,7 +154,7 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.6.3</version>
+            <version>5.8.22</version>
         </dependency>
 
         <dependency>
@@ -169,12 +185,6 @@
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
             <version>3.2.12</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
         </dependency>
 
     </dependencies>

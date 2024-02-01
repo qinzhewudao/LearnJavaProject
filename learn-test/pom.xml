@@ -6,7 +6,7 @@
     <parent>
         <groupId>sy</groupId>
         <artifactId>LearnJavaProject</artifactId>
-        <version>1.0-RELEASE</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>learn-test</artifactId>
